@@ -33,5 +33,12 @@ public class CustomerController : ControllerBase
  { 
      return _customers.Where(c => c.Id == customerId).First(); 
  } 
+ [HttpPost(Name =
+"PostCustomer")]
+ public List<Customer> Post([FromBody]Customer customer) 
+ { 
+      _customers.Add(customer);
+      return _customers;
+ } 
     }
 
