@@ -13,6 +13,11 @@ builder.Services.AddCors(options =>
     });
    
 });
+ builder.Host.ConfigureLogging(logging => 
+ { 
+     logging.ClearProviders(); 
+     logging.AddConsole(); 
+ }); 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

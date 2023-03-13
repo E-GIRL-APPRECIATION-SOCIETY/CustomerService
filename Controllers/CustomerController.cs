@@ -30,15 +30,36 @@ public class CustomerController : ControllerBase
     [HttpGet("{customerId}", Name =
 "GetCustomerById")]
  public Customer Get(int customerId) 
- { 
+ {  
+     _logger.LogInformation("Method 'Get' called at {DT}",  
+         DateTime.UtcNow.ToLongTimeString()); 
      return _customers.Where(c => c.Id == customerId).First(); 
+ 
+    
  } 
  [HttpPost(Name =
 "PostCustomer")]
- public List<Customer> Post([FromBody]Customer customer) 
- { 
+ public void Post([FromBody]Customer customer) 
+ {      
+     try{
+  _logger.LogInformation("Method 'Get' called at {DT}",  
+         DateTime.UtcNow.ToLongTimeString()); 
       _customers.Add(customer);
-      return _customers;
+      
+     
+     }
+    catch (Exception ex) {
+        
+        
+         _logger.LogError(ex.Message,"oopsie at post");
+         throw ex;
+        
+       
+       
+         
+       
+    }
+      
  } 
     }
 
